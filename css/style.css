@@ -122,7 +122,7 @@ h6,
 }
 
 .hero-header {
-    background: linear-gradient(rgba(28, 37, 54, .75), rgba(28, 37, 54, .75)), url(../img/hero.jpg) top right no-repeat;
+    background: linear-gradient(90deg, rgba(17, 24, 38, .88) 0%, rgba(17, 24, 38, .6) 60%, rgba(17, 24, 38, .35) 100%), url(../img/hero.jpg) top right no-repeat;
     background-size: cover;
 }
 
@@ -314,7 +314,7 @@ h6,
 }
 
 .bg-img {
-    background: linear-gradient(rgba(28, 37, 54, .5), rgba(28, 37, 54, .5)), url(../img/bg.jpg) center center no-repeat;
+    background: linear-gradient(rgba(28, 37, 54, .78), rgba(28, 37, 54, .78)), url(../img/bg.jpg) center center no-repeat;
     background-size: cover;
 }
 
@@ -338,6 +338,11 @@ h6,
 
 .footer-bottom {
     background: var(--dark-deep);
+}
+
+/* Separador entre la barra superior y el menú, ambos oscuros */
+.navbar.bg-dark {
+    border-top: 1px solid rgba(255, 255, 255, .12);
 }
 
 /* Foco visible para navegar con teclado */
