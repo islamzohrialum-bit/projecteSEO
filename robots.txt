@@ -1,0 +1,47 @@
+# robots.txt - Calzados Herrera
+# Controla el RASTREIG, no la indexació (per a això fem servir <meta name="robots">).
+# No és un fitxer de seguretat: és públic i els robots maliciosos l'ignoren.
+
+# Regles per a tots els robots
+User-agent: *
+# Paràmetres del formulari (gracies.html?nombre=...): URLs duplicades sense valor
+Disallow: /*?nombre=
+# Fitxers .txt (LICENSE, READ-ME), excepte robots.txt i llms.txt: guanya la regla més llarga
+Disallow: /*.txt$
+Allow: /robots.txt
+Allow: /llms.txt
+
+# Bots de cerca d'IA (PERMETRE): poden citar-nos a respostes generatives
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: Claude-SearchBot
+Allow: /
+
+User-agent: Claude-User
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+# Bots d'entrenament d'IA (BLOQUEJAR): no volem que entrenin models amb el contingut
+User-agent: GPTBot
+Disallow: /
+
+User-agent: ClaudeBot
+Disallow: /
+
+User-agent: Google-Extended
+Disallow: /
+
+User-agent: CCBot
+Disallow: /
+
+User-agent: Bytespider
+Disallow: /
+
+# Mapa del lloc (URL absoluta, fora dels grups)
+Sitemap: https://islamzohrialum-bit.github.io/projecteSEO/sitemap.xml

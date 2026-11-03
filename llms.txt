@@ -1,0 +1,21 @@
+# Calzados Herrera
+
+> Sabateria familiar a Santa Perpètua de Mogoda (Barcelona). Venem calçat per a home, dona i nens, i oferim assessorament, reparació i comandes de calçat.
+
+## Pàgines principals
+
+- [Inici](https://islamzohrialum-bit.github.io/projecteSEO/): presentació de la botiga i catàleg destacat.
+- [Sobre nosaltres](https://islamzohrialum-bit.github.io/projecteSEO/about.html): història de la sabateria i tracte proper.
+- [Catàleg i preus](https://islamzohrialum-bit.github.io/projecteSEO/menu.html): calçat d'home, dona i nens amb preus.
+- [Serveis](https://islamzohrialum-bit.github.io/projecteSEO/service.html): assessorament, reparació i comandes.
+- [Contacte](https://islamzohrialum-bit.github.io/projecteSEO/contact.html): adreça, correu, telèfon i formulari.
+
+## Dades de contacte
+
+- Adreça: Carrer d'exemple, 00 · 08130 Santa Perpètua de Mogoda
+- Correu: info@calzadosherrera.cat
+- Telèfon: +34 93 000 00 00
+
+## Opcional
+
+- [Avís legal i cookies](https://islamzohrialum-bit.github.io/projecteSEO/avis-legal.html)

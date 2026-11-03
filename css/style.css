@@ -122,7 +122,7 @@ h6,
 }
 
 .hero-header {
-    background: linear-gradient(90deg, rgba(17, 24, 38, .88) 0%, rgba(17, 24, 38, .6) 60%, rgba(17, 24, 38, .35) 100%), url(../img/hero.jpg) top right no-repeat;
+    background: linear-gradient(90deg, rgba(17, 24, 38, .88) 0%, rgba(17, 24, 38, .6) 60%, rgba(17, 24, 38, .35) 100%), url(../img/hero.webp) top right no-repeat;
     background-size: cover;
 }
 
@@ -248,18 +248,18 @@ h6,
     height: calc(100% - 45px);
     top: 135px;
     left: 0;
-    background: linear-gradient(rgba(28, 37, 54, .9), rgba(28, 37, 54, .9)), url(../img/service.jpg) center center no-repeat;
+    background: linear-gradient(rgba(28, 37, 54, .9), rgba(28, 37, 54, .9)), url(../img/service.webp) center center no-repeat;
     background-size: cover;
     z-index: -1;
 }
 
 .contact::after {
-    background: linear-gradient(rgba(28, 37, 54, .5), rgba(28, 37, 54, .5)), url(../img/bg.jpg) center center no-repeat;
+    background: linear-gradient(rgba(28, 37, 54, .5), rgba(28, 37, 54, .5)), url(../img/bg.webp) center center no-repeat;
     background-size: cover;
 }
 
 .bg-offer {
-    background: linear-gradient(rgba(28, 37, 54, .9), rgba(28, 37, 54, .9)), url(../img/offer.jpg) center center no-repeat;
+    background: linear-gradient(rgba(28, 37, 54, .9), rgba(28, 37, 54, .9)), url(../img/offer.webp) center center no-repeat;
     background-size: cover;
 }
 
@@ -314,7 +314,7 @@ h6,
 }
 
 .bg-img {
-    background: linear-gradient(rgba(28, 37, 54, .78), rgba(28, 37, 54, .78)), url(../img/bg.jpg) center center no-repeat;
+    background: linear-gradient(rgba(28, 37, 54, .78), rgba(28, 37, 54, .78)), url(../img/bg.webp) center center no-repeat;
     background-size: cover;
 }
 
@@ -366,4 +366,23 @@ textarea:focus-visible {
         transition: none !important;
         animation: none !important;
     }
+}
+
+/* Marca dins de caixes de color: que el nom llarg no se surti del marc */
+.border-inner .navbar-brand {
+    white-space: normal;
+    margin-right: 0;
+    padding: 0 1.25rem;
+    max-width: 100%;
+    text-align: center;
+}
+
+.border-inner .navbar-brand .h1 {
+    font-size: clamp(1.4rem, 1.2rem + 0.8vw, 2.2rem);
+    line-height: 1.2;
+}
+
+.border-inner .navbar-brand .fa-shoe-prints {
+    font-size: 1.8rem !important;
+    margin-right: .5rem !important;
 }

@@ -1,0 +1,113 @@
+# =====================================================================
+#  .htaccess - Calzados Herrera (servidor Apache)
+#  Apache el llegeix a cada petició i s'aplica a aquesta carpeta i a
+#  totes les subcarpetes. Requereix AllowOverride i els mòduls
+#  mod_rewrite, mod_headers, mod_expires i mod_deflate.
+#  ATENCIÓ: una errada de sintaxi tomba el web amb un error 500.
+#  Feu-ne còpia abans de tocar-lo.
+# =====================================================================
+
+Options -Indexes
+DirectoryIndex index.html
+
+# ---------------------------------------------------------------------
+# 1. Protegir fitxers ocults (.htaccess, .git...) -> 403 Forbidden
+# ---------------------------------------------------------------------
+<FilesMatch "^\.">
+    Require all denied
+</FilesMatch>
+
+# ---------------------------------------------------------------------
+# 2. Pàgines d'error personalitzades
+# ---------------------------------------------------------------------
+# Nota: 404.html porta <base href="/projecteSEO/"> per a GitHub Pages;
+# si el web es mou a l'arrel d'un domini Apache, cal treure-la.
+ErrorDocument 404 /404.html
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    # -----------------------------------------------------------------
+    # 3. Forçar HTTPS i una sola versió del domini (sense www) - 301
+    #    http://www.exemple.cat/  ->  https://exemple.cat/
+    # -----------------------------------------------------------------
+    RewriteCond %{HTTPS} off [OR]
+    RewriteCond %{HTTP_HOST} ^www\. [NC]
+    RewriteCond %{HTTP_HOST} ^(?:www\.)?(.+)$ [NC]
+    RewriteRule ^ https://%1%{REQUEST_URI} [L,R=301]
+
+    # -----------------------------------------------------------------
+    # 4. /index.html -> /  (evita contingut duplicat de la portada) - 301
+    # -----------------------------------------------------------------
+    RewriteCond %{THE_REQUEST} \s/+(.*/)?index\.html[\s?] [NC]
+    RewriteRule ^(.*/)?index\.html$ /$1 [L,R=301]
+
+    # -----------------------------------------------------------------
+    # 5. Redireccions 301 d'URL antigues (plantilla CakeZone original)
+    # -----------------------------------------------------------------
+    RewriteRule ^team\.html$    /about.html   [L,R=301]
+    RewriteRule ^testimonial\.html$ /about.html [L,R=301]
+    RewriteRule ^cataleg/?$     /menu.html    [L,R=301]
+    RewriteRule ^serveis/?$     /service.html [L,R=301]
+    RewriteRule ^contacte/?$    /contact.html [L,R=301]
+    RewriteRule ^sobre-nosaltres/?$ /about.html [L,R=301]
+
+    # -----------------------------------------------------------------
+    # 6. URL amigables (opcional): servir /pagina sense l'extensió .html
+    #    Si s'activa, cal canviar també les canonical i el sitemap.
+    # -----------------------------------------------------------------
+    # RewriteCond %{REQUEST_FILENAME} !-d
+    # RewriteCond %{REQUEST_FILENAME}.html -f
+    # RewriteRule ^([^/.]+)$ $1.html [L]
+</IfModule>
+
+# ---------------------------------------------------------------------
+# 7. Capçaleres SEO: X-Robots-Tag (equivalent a meta robots per a
+#    fitxers que no són HTML) i seguretat bàsica
+# ---------------------------------------------------------------------
+<IfModule mod_headers.c>
+    # Pàgines que no han de sortir als resultats
+    <FilesMatch "^(gracies|avis-legal|404)\.html$">
+        Header set X-Robots-Tag "noindex, follow"
+    </FilesMatch>
+
+    # Fitxers de text i PDF que no volem indexats
+    <FilesMatch "^(LICENSE|READ-ME)\.txt$|\.pdf$">
+        Header set X-Robots-Tag "noindex, nofollow"
+    </FilesMatch>
+
+    Header always set X-Content-Type-Options "nosniff"
+    Header always set Referrer-Policy "strict-origin-when-cross-origin"
+    Header always set Strict-Transport-Security "max-age=31536000"
+</IfModule>
+
+# ---------------------------------------------------------------------
+# 8. WPO: memòria cau del navegador (caching)
+# ---------------------------------------------------------------------
+<IfModule mod_expires.c>
+    ExpiresActive On
+    ExpiresDefault                          "access plus 1 month"
+    ExpiresByType text/html                 "access plus 0 seconds"
+    ExpiresByType application/xml           "access plus 0 seconds"
+    ExpiresByType text/plain                "access plus 1 day"
+    ExpiresByType text/css                  "access plus 1 year"
+    ExpiresByType application/javascript    "access plus 1 year"
+    ExpiresByType image/webp                "access plus 1 year"
+    ExpiresByType image/avif                "access plus 1 year"
+    ExpiresByType image/jpeg                "access plus 1 year"
+    ExpiresByType image/png                 "access plus 1 year"
+    ExpiresByType image/x-icon              "access plus 1 year"
+    ExpiresByType font/woff2                "access plus 1 year"
+</IfModule>
+
+# ---------------------------------------------------------------------
+# 9. WPO: compressió GZIP dels fitxers de text
+# ---------------------------------------------------------------------
+<IfModule mod_deflate.c>
+    AddOutputFilterByType DEFLATE text/html text/plain text/css text/xml
+    AddOutputFilterByType DEFLATE application/javascript application/xml image/svg+xml
+</IfModule>
+
+# Tipus MIME per a formats d'imatge moderns
+AddType image/webp .webp
+AddType image/avif .avif
